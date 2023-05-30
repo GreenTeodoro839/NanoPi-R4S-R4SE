@@ -30,6 +30,23 @@ rm -rf ../../customfeeds/luci/applications/luci-app-kodexplorer
 rm -rf openwrt-package/verysync
 rm -rf openwrt-package/luci-app-verysync
 
+#Add myautocore
+rm -rf package/lean/autocore
+git clone https://github.com/sirpdboy/myautocore package/myautocore
+
+#Add lucky
+git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky
+
+#Add autosamba
+rm -rf package/lean/autosamba
+git clone https://github.com/sirpdboy/autosamba package/autosamba
+
+#Add speedtest
+git clone https://github.com/sirpdboy/netspeedtest.git package/netspeedtest
+
+#Add netdata
+git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
+
 # Add luci-app-passwall
 git clone https://github.com/xiaorouji/openwrt-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2

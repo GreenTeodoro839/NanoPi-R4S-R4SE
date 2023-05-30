@@ -42,7 +42,7 @@ rm -rf package/lean/autosamba
 git clone https://github.com/sirpdboy/autosamba package/autosamba
 
 #Add speedtest
-git clone https://github.com/sirpdboy/netspeedtest.git package/netspeedtest
+#git clone https://github.com/sirpdboy/netspeedtest.git package/netspeedtest
 
 #Add netdata
 git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata

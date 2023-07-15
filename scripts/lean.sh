@@ -14,6 +14,27 @@ git clone https://github.com/sbwml/luci-app-alist package/alist
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 20.x feeds/packages/lang/golang
 
+#Add lucky
+git clone https://github.com/sirpdboy/luci-app-lucky.git package/lucky
+
+#Add chatgpt
+git clone https://github.com/sirpdboy/chatgpt-web.git package/luci-app-chatgpt
+
+#Add parentcontrol
+git clone https://github.com/sirpdboy/luci-app-parentcontrol.git package/luci-app-parentcontrol
+
+#Add myautocore
+#rm -rf package/lean/autocore
+#git clone https://github.com/sirpdboy/myautocore package/myautocore
+
+#Add autosamba
+rm -rf package/lean/autosamba
+git clone https://github.com/sirpdboy/autosamba package/autosamba
+
+#Add netdata
+rm -rf package/feeds/luci/luci-app-netdata
+git clone https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
+
 # Clone community packages
 mkdir package/community
 pushd package/community
@@ -114,3 +135,20 @@ wget -P target/linux/rockchip/armv8/base-files/etc/init.d/ https://github.com/fr
 wget -P target/linux/rockchip/armv8/base-files/usr/bin/ https://github.com/friendlyarm/friendlywrt/raw/master-v19.07.1/target/linux/rockchip-rk3399/base-files/usr/bin/start-rk3399-pwm-fan.sh
 chmod u+x target/linux/rockchip/armv8/base-files/etc/init.d/fa-rk3399-pwmfan
 chmod u+x target/linux/rockchip/armv8/base-files/usr/bin/start-rk3399-pwm-fan.sh
+
+# 开启ARM KVM支持
+rm -rf package/feeds/packages/qemu
+wget https://github.com/GreenTeodoro839/R4S-OpenWrt/raw/main/data/qemu.zip
+unzip qemu.zip
+mv qemu ./package/
+rm qemu.zip
+cat >> target/linux/rockchip/armv8/config-6.1 <<EOF
+CONFIG_VIRTUALIZATION=y
+CONFIG_KVM=y
+CONFIG_KVM_ARM_HOST=y
+CONFIG_KVM_GENERIC_DIRTYLOG_READ_PROTECT=y
+CONFIG_KVM_INDIRECT_VECTORS=y
+CONFIG_KVM_MMIO=y
+CONFIG_KVM_VFIO=y
+CONFIG_VHOST_NET=y
+EOF

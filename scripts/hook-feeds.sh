@@ -46,5 +46,22 @@ echo "src-link packages $packages_feed" >> feeds.conf.default
 sed -i '/src-git luci/d' feeds.conf.default
 echo "src-link luci $luci_feed" >> feeds.conf.default
 
+#Add sirpdboy
+echo >> feeds.conf.default
+echo 'src-git opentopd  https://github.com/sirpdboy/sirpdboy-package' >> feeds.conf.default
+
+#Add iStore
+echo >> feeds.conf.default
+echo 'src-git istore https://github.com/linkease/istore;main' >> feeds.conf.default
+
+echo >> feeds.conf.default
+echo 'src-git nas https://github.com/linkease/nas-packages.git;master' >> feeds.conf.default
+echo 'src-git nas_luci https://github.com/linkease/nas-packages-luci.git;main' >> feeds.conf.default
+
 # Update feeds
 ./scripts/feeds update -a
+./scripts/feeds update istore
+./scripts/feeds install -d y -p istore luci-app-store
+./scripts/feeds update nas nas_luci
+./scripts/feeds install -a -p nas
+./scripts/feeds install -a -p nas_luci
